@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:myshop/ui/orders/orders_screen.dart';
 import 'package:myshop/ui/products/product_detail_screen.dart';
+
 import 'package:myshop/ui/products/products_manager.dart';
 import 'package:myshop/ui/products/user_products_screen.dart';
+
 import 'ui/products/product_overview_screen.dart';
 import 'ui/cart/cart_screen.dart';
 
@@ -44,9 +46,24 @@ class MyApp extends StatelessWidget {
       //   child: CartScreen(),
       // ),
 //lab2 , hinh 2
-      home: const SafeArea(
-        child:  OrdersScreen(),
-      ),
+      //
+//lab2 , hinh3
+      home: const ProductOverviewScreen(),
+      routes: {
+        CartScreen.routerName: (ctx) => const CartScreen(),
+        OrdersScreen.routeName: (ctx) => const OrdersScreen(),
+        UserProductsScreen.routeName: (ctx) => const UserProductsScreen(),
+      },
+
+      onGenerateRoute: (settings) {
+        if (settings.name == ProductDetailScreen.routeName) {
+          final productId = settings.arguments as String;
+          return MaterialPageRoute(builder: (ctx) {
+            return ProductDetailScreen(ProductsManager().findById(productId));
+          });
+        }
+        return null;
+      },
     );
   }
 }
