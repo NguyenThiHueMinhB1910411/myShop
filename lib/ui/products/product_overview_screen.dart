@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:myshop/ui/cart/cart_manager.dart';
 import 'package:myshop/ui/shared/app_drawer.dart';
 import 'products_grid.dart';
 
 import "../cart/cart_screen.dart";
+import 'top_right_badge.dart';
 
 enum FilterOption { favorites, all }
 
@@ -30,16 +32,31 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
       body: ProductsGrid(_showOnlyFavorites),
     );
   }
+//lab2 hinh 1,2,3
+  // Widget buildShoppingCartIcon() {
+  //   return IconButton(
+  //     icon: const Icon(
+  //       Icons.shopping_cart,
+  //     ),
+  //     onPressed: () {
+  //       // print('Go to cart screen');
+  //       Navigator.of(context).pushNamed(CartScreen.routerName);
+  //     },
+  //   );
+  // }
 
+  //lab2 hinh 4
   Widget buildShoppingCartIcon() {
-    return IconButton(
-      icon: const Icon(
-        Icons.shopping_cart,
+    return TopRightBadge(
+      data: CartManager().productCount,
+      child: IconButton(
+        icon: const Icon(
+          Icons.shopping_cart,
+        ),
+        onPressed: () {
+          Navigator.of(context).pushNamed(CartScreen.routeName);
+        },
       ),
-      onPressed: () {
-        // print('Go to cart screen');
-        Navigator.of(context).pushNamed(CartScreen.routerName);
-      },
     );
   }
 
