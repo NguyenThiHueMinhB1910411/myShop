@@ -1,4 +1,4 @@
-import 'package:myshop/models/CartItem.dart';
+import 'package:myshop/models/cart_item.dart';
 
 import './cart_item_card.dart';
 
