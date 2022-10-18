@@ -1,6 +1,5 @@
 import 'package:myshop/models/cart_item.dart';
 
-import 'cart_item.dart';
 
 class OrderItem {
   final String? id;

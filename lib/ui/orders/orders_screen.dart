@@ -4,12 +4,6 @@ import 'package:provider/provider.dart';
 import 'order_manager.dart';
 import 'order_item_card.dart';
 
-//
-import '../orders/order_manager.dart';
-
-import '../../models/order_item.dart';
-// import '../../ui/orders/orders_screen.dart';
-
 class OrdersScreen extends StatelessWidget {
   static const routeName = '/orders';
   const OrdersScreen({super.key});

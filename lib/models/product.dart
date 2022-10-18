@@ -15,17 +15,17 @@ class Product {
     required this.price,
     required this.imageUrl,
     isFavorite = false,
-  }): _isFavorite = ValueNotifier(isFavorite);
+  }) : _isFavorite = ValueNotifier(isFavorite);
 
-  set isFavorite(bool newValue){
+  set isFavorite(bool newValue) {
     _isFavorite.value = newValue;
   }
 
-  bool get isFavorite{
+  bool get isFavorite {
     return _isFavorite.value;
   }
 
-  ValueNotifier<bool> get isFavoriteListenable{
+  ValueNotifier<bool> get isFavoriteListenable {
     return _isFavorite;
   }
 
@@ -38,7 +38,7 @@ class Product {
     bool? isFavorite,
   }) {
     return Product(
-      id: id ?? this.title,
+      id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
       price: price ?? this.price,
