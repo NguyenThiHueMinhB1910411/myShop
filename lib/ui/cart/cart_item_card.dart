@@ -47,12 +47,8 @@ class CartItemCard extends StatelessWidget {
       },
       onDismissed: (direction) {
         // print('Cart item dismissed');
-        onDismissed:
-        (direction) {
-          context.read<CartManager>().removeItem(productId);
-        };
+        context.read<CartManager>().removeItem(productId);
       },
-      
       child: buildItemCard(),
     );
   }
