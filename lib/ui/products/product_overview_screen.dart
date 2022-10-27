@@ -14,9 +14,16 @@ class ProductOverviewScreen extends StatefulWidget {
   const ProductOverviewScreen({super.key});
   @override
   State<ProductOverviewScreen> createState() => _ProductOverviewScreenState();
+  
 }
 
+// class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
+//   var _showOnlyFavorites = false;
+
+
+
 class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
+ 
   final _showOnlyFavorites = ValueNotifier<bool>(false);
   late Future<void> _fetchProducts;
   

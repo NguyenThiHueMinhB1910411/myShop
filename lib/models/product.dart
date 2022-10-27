@@ -7,6 +7,7 @@ class Product {
   final double price;
   final String imageUrl;
   final ValueNotifier<bool> _isFavorite;
+
   Map<String, dynamic> toJson() {
     return {
       'title': title,
@@ -17,13 +18,15 @@ class Product {
   }
 
   static Product fromJson(Map<String, dynamic> json) {
-    return Product(
+    Product product = Product(
       id: json['id'],
       title: json['title'],
       description: json['description'],
       price: json['price'],
-      imageUrl: json['imageUrl'],
+      imageUrl: json['imageURL'],
     );
+    print(product);
+    return product;
   }
 
   Product({
