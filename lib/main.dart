@@ -20,23 +20,31 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
 //  const MyApp({super.key});
-  const MyApp({Key? Key}) : super(key: Key);
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
+          //LAB4
           ChangeNotifierProvider(
-            //LAB4
             create: (ctx) => AuthManager(),
           ),
+          //LAB3
 
-          ChangeNotifierProvider(
-            //LAB3
+          // ChangeNotifierProvider(
+          //   create: (ctx) => ProductsManager(),
+          // ),
+          ChangeNotifierProxyProvider<AuthManager, ProductsManager>(
             create: (ctx) => ProductsManager(),
+            update: (ctx, authManager, productsManager) {
+              //khi authManager co bao hieu thay doi thi doc lai authtoken
+              // cho productManager
+              productsManager!.authToken = authManager.authToken;
+              return productsManager;
+            },
           ),
-
           //LAB3 buoc 2,3
           ChangeNotifierProvider(
             create: (ctx) => CartManager(),
@@ -84,20 +92,20 @@ class MyApp extends StatelessWidget {
                   ? const ProductOverviewScreen()
                   : FutureBuilder(
                       future: authManager.tryAutoLogin(),
-                      builder: ((context, snapshot) {
+                      builder: (ctx, snapshot) {
                         return snapshot.connectionState ==
                                 ConnectionState.waiting
                             ? const SplashScreen()
                             : const AuthScreen();
-                      }),
+                      },
                     ),
 
-              // routes: {
-              //   CartScreen.routeName: (ctx) => const CartScreen(),
-              //   OrdersScreen.routeName: (ctx) => const OrdersScreen(),
-              //   UserProductsScreen.routeName: (ctx) =>
-              //       const UserProductsScreen(),
-              // },
+              routes: {
+                CartScreen.routeName: (ctx) => const CartScreen(),
+                OrdersScreen.routeName: (ctx) => const OrdersScreen(),
+                UserProductsScreen.routeName: (ctx) =>
+                    const UserProductsScreen(),
+              },
 
               onGenerateRoute: (settings) {
                 if (settings.name == ProductDetailScreen.routeName) {

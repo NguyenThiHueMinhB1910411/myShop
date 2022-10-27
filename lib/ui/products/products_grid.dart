@@ -16,10 +16,10 @@ class ProductsGrid extends StatelessWidget {
     // final products =
     //     showFavorites ? productsManager.favoriteItems : productsManager.items;
     final products = context.select<ProductsManager, List<Product>>(
-      (productsManager) => showFavorites
-        ?productsManager.favoriteItems
-        :productsManager.items);
-    
+        (productsManager) => showFavorites
+            ? productsManager.favoriteItems
+            : productsManager.items);
+
     return GridView.builder(
       padding: const EdgeInsets.all(10.0),
       itemCount: products.length,
